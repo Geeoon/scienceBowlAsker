@@ -26,10 +26,10 @@ int main() {
 			break;
 		} else if (output == "shortAnswer") {
 			qType = 1;
-			output = "Short Answer  ";
+			output = "Short Answer ";
 		} else if (output == "multipleChoice") {
 			qType = 2;
-			output = "Multiple Choice  ";
+			output = "Multiple Choice ";
 		} else if (output == "TOSS-UP") {
 			worth = 4;
 			output = "\n\n TOSS-UP \n";
@@ -40,13 +40,13 @@ int main() {
 			output = "\n ANSWER: ";
 			_getch();
 		} else if (output == "W)") {
-			output = "\nW) ";
+			output = "\n W) ";
 		} else if (output == "X)") {
-			output = "\nX) ";
+			output = "\n X) ";
 		} else if (output == "Y)") {
-			output = "\nY)";
+			output = "\n Y)";
 		} else if (output == "Z)") {
-			output = "\nZ)";
+			output = "\n Z)";
 		}
 		std::cout << output << " ";
 	}

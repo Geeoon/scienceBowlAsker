@@ -3,6 +3,10 @@
 #include <cstdlib>
 #include <string>
 #include <conio.h>
+#include <time.h> 
+
+void wait(float time);
+
 int main() {
 	char filePath[9999];
 	char word[50];
@@ -22,7 +26,7 @@ int main() {
 		fileStream >> word;
 		output = word;
 		if (output == "SBA-END") {
-			std::cout << "\n\n End of Questioning";
+			std::cout << "\n\n End of Questioning.  Press any key to exit the program.";
 			break;
 		} else if (output == "shortAnswer") {
 			qType = 1;
@@ -40,18 +44,31 @@ int main() {
 			output = "\n ANSWER: ";
 			_getch();
 		} else if (output == "W)") {
-			output = "\n W) ";
+			output = "\n W)";
 		} else if (output == "X)") {
-			output = "\n X) ";
+			output = "\n X)";
 		} else if (output == "Y)") {
 			output = "\n Y)";
 		} else if (output == "Z)") {
 			output = "\n Z)";
 		}
-		std::cout << output << " ";
+
+		for (int i = 0; i < output.length(); i++) {
+			std::cout << output[i];
+			wait(50);
+		}
+		std::cout << " ";
 	}
 
 	fileStream.close();
 	_getch();
 	return 0;
+}
+
+void wait(float time) {
+// Stroing start time 
+clock_t start_time = clock();
+
+// looping till required time is not acheived 
+while (clock() < start_time + time);
 }

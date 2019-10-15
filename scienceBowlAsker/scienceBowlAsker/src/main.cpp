@@ -8,6 +8,8 @@
 void wait(float time);
 
 int main() {
+	bool textDone = false;
+	bool speechDone = true;
 	char filePath[9999];
 	char word[50];
 	std::string output;
@@ -23,6 +25,7 @@ int main() {
 	}
 
 	while (fileStream.good()) {
+		textDone = false;
 		fileStream >> word;
 		output = word;
 		if (output == "SBA-END") {
@@ -57,7 +60,11 @@ int main() {
 			std::cout << output[i];
 			wait(50);
 		}
+		textDone = true;
 		std::cout << " ";
+		while (speechDone == false || textDone == false) {
+
+		}
 	}
 
 	fileStream.close();

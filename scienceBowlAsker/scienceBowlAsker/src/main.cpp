@@ -1,11 +1,20 @@
+/*
+*Program Create by Geeoon Chung
+*Windows Version
+*Windows specific lines are denoted.
+*/
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <string>
 #include <conio.h>
 #include <time.h> 
+#include <Windows.h> //Windows Specific
+
+bool interrupted = false;
 
 void wait(float time);
+void delay(float time);
 
 int main() {
 	bool textDone = false;
@@ -23,6 +32,8 @@ int main() {
 		std::cout << "Invalid Path";
 		exit(EXIT_FAILURE);
 	}
+	std::cout << "\nloading...\n";
+	delay(500);
 
 	while (fileStream.good()) {
 		textDone = false;
@@ -63,7 +74,7 @@ int main() {
 		textDone = true;
 		std::cout << " ";
 		while (speechDone == false || textDone == false) {
-
+			
 		}
 	}
 
@@ -73,9 +84,29 @@ int main() {
 }
 
 void wait(float time) {
-// Stroing start time 
-clock_t start_time = clock();
+	// Storing start time 
+	clock_t start_time = clock();
 
-// looping till required time is not acheived 
-while (clock() < start_time + time);
+	if (interrupted = true) {
+		//_getch();
+		interrupted = false;
+		//delay(500);
+	}
+
+	while (clock() < start_time + time) {
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {// Windows Specific
+			if (interrupted == false) {
+				//std::cout << "----INTERRUPT----\n";
+				interrupted = true;
+			}
+		}
+	}
+}
+
+void delay(float time) {
+	// Storing start time 
+	clock_t start_time = clock();
+
+	// looping till required time is not acheived 
+	while (clock() < start_time + time);
 }

@@ -1,7 +1,8 @@
 /*
-*Program Create by Geeoon Chung
-*Windows Version
-*Windows specific lines are denoted.
+Program Created by Geeoon Chung
+Windows Version
+Windows specific lines are denoted.
+C:\Users\Geeoon Chung\Desktop\set1.sba
 */
 #include <iostream>
 #include <fstream>
@@ -32,7 +33,7 @@ int main() {
 		std::cout << "Invalid Path";
 		exit(EXIT_FAILURE);
 	}
-	std::cout << "\nloading...\n";
+	std::cout << "\nloading...";
 	delay(500);
 
 	while (fileStream.good()) {

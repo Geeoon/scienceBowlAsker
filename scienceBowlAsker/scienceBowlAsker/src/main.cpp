@@ -12,6 +12,7 @@
 #include <Windows.h> //Windows Specific
 
 bool interrupted = false;
+int waitTime = 50;
 
 void wait(float time);
 void delay(float time);
@@ -32,8 +33,6 @@ int main() {
 		std::cout << "Invalid Path";
 		exit(EXIT_FAILURE);
 	}
-	std::cout << "\nloading...\n";
-	delay(500);
 
 	while (fileStream.good()) {
 		textDone = false;
@@ -44,16 +43,18 @@ int main() {
 			break;
 		} else if (output == "shortAnswer") {
 			qType = 1;
-			output = "Short Answer ";
+			output = "Short Answer: ";
 		} else if (output == "multipleChoice") {
 			qType = 2;
-			output = "Multiple Choice ";
+			output = "Multiple Choice: ";
 		} else if (output == "TOSS-UP") {
 			worth = 4;
 			output = "\n\n TOSS-UP \n";
+			delay(250);
 		} else if (output == "BONUS") {
 			worth = 10;
 			output = "\n\n BONUS \n";
+			delay(250);
 		} else if (output == "ANSWER:") {
 			output = "\n ANSWER: ";
 			_getch();
@@ -69,7 +70,7 @@ int main() {
 
 		for (int i = 0; i < output.length(); i++) {
 			std::cout << output[i];
-			wait(50);
+			wait(waitTime);
 		}
 		textDone = true;
 		std::cout << " ";
@@ -88,18 +89,21 @@ void wait(float time) {
 	clock_t start_time = clock();
 
 	if (interrupted = true) {
-		//_getch();
+
 		interrupted = false;
-		//delay(500);
+
 	}
 
-	while (clock() < start_time + time) {
+	while (clock() < start_time + time) {/*
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {// Windows Specific
 			if (interrupted == false) {
 				//std::cout << "----INTERRUPT----\n";
-				interrupted = true;
+				waitTime = 0;
 			}
+		} else {
+			waitTime = 50;
 		}
+		*/
 	}
 }
 
